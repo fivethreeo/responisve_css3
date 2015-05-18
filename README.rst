@@ -15,5 +15,6 @@
     bower install -S bootstrap
     bower install -S mediaCheck
     bower install -S jquery
-    
+    bower install -S ckeditor
+
     grunt concat less uglify copy

@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "connect": "^3.3.5",
+    "grunt-build-control": "^0.5.0",
     "grunt-contrib-jade": "^0.14.1",
     "less-plugin-autoprefix": "^1.4.1",
     "serve-static": "^1.9.2"

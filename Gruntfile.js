@@ -25,6 +25,15 @@
               'assets/javascript/backend.js'
             ],
             dest: 'server/static/javascript/backend.js',
+          },
+          js_editor: {
+            src: [
+              'bower_components/jquery/dist/jquery.js',
+              'bower_components/bootstrap/dist/js/bootstrap.js',
+              'bower_components/mediaCheck/js/mediaCheck.js',
+              'editor_assets/javascript/editor.js'
+            ],
+            dest: 'editor/static/javascript/editor.js',
           }
         },
         jade: {
@@ -34,21 +43,32 @@
               pretty: true
             },
             files: {
-              "server/index.html": ["assets/jade/*.jade"]
+              'server/index.html': ['assets/jade/index.jade'] 
+              /*
+              'server/bandet.html': ['assets/jade/index.jade'],
+              'server/cd.html': ['assets/jade/index.jade'],
+              'server/historie.html': ['assets/jade/index.jade'],
+              'server/bilder.html': ['assets/jade/index.jade'],
+              'server/linker.html': ['assets/jade/index.jade'],
+              'server/nyheter.html': ['assets/jade/index.jade'],
+              'server/jubileum.html': ['assets/jade/index.jade']
+              */
             }
           }
         },
         less: {
           development: {
             options: {
-              compress: false,  //minifying the result
-              plugins : [ new (require('less-plugin-autoprefix'))({browsers : [ "last 2 versions", "ie 9" ]}) ]
+              // compress: true,  //minifying the result
+              plugins : [ new (require('less-plugin-autoprefix'))({browsers : [ 'last 2 versions', 'ie 9' ]}) ]
             },
             files: {
               //compiling frontend.less into frontend.css
-              "server/static/stylesheets/frontend.css":"assets/less/frontend.less",
+              'server/static/stylesheets/frontend.css':'assets/less/frontend.less',
               //compiling backend.less into backend.css
-              "server/static/stylesheets/backend.css":"assets/less/backend.less"
+              'server/static/stylesheets/backend.css':'assets/less/backend.less',
+              
+              'editor/static/stylesheets/editor.css':'editor_assets/less/editor.less'
             }
           }
         },
@@ -75,7 +95,7 @@
               'bower_components/bootstrap/dist/js/bootstrap.js',
               'assets/javascript/frontend.js'
               ],   
-            tasks: ['concat:js_frontend','uglify:frontend'],     //tasks to run
+            tasks: ['concat:js_frontend'], // ,'uglify:frontend'],     //tasks to run
             options: {
               livereload: true                        //reloads the browser
             }
@@ -92,6 +112,18 @@
               livereload: true                        //reloads the browser
             }
           },
+          js_editor: {
+            files: [
+              //watched files
+              'bower_components/jquery/jquery.js',
+              'bower_components/bootstrap/dist/js/bootstrap.js',
+              'editor_assets/javascript/editor.js'
+            ],   
+            tasks: ['concat:js_editor'],     //tasks to run
+            options: {
+              livereload: true                        //reloads the browser
+            }
+          },
           less: {
             files: ['assets/less/*.less'],  //watched files
             tasks: ['less'],                          //tasks to run
@@ -102,6 +134,14 @@
           jade: {
             files: ['assets/jade/*.jade'],  //watched files
             tasks: ['jade'],                          //tasks to run
+            options: {
+              livereload: true,                        //reloads the browser
+              autoprefix: true
+            }
+          },
+          copy: {
+            files: ['assets/static/**/*.*'],  //watched files
+            tasks: ['copy:staticfiles'],                          //tasks to run
             options: {
               livereload: true,                        //reloads the browser
               autoprefix: true
@@ -122,6 +162,21 @@
             cwd: 'assets/static/',
             src: '**',
             dest: 'server/static/',
+            flatten: false
+          },
+          editor_glyphicons: {
+            expand: true,
+            cwd: 'bower_components/bootstrap/dist/fonts/',
+            src: '**',
+            dest: 'editor/static/fonts/',
+            flatten: false
+          },
+          
+          editor_staticfiles: {
+            expand: true,
+            cwd: 'editor_assets/static/',
+            src: '**',
+            dest: 'editor/static/',
             flatten: false
           }
         },
@@ -150,7 +205,7 @@
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-build-control');
-  
+
   // Task definition
   grunt.registerTask('default', ['watch']);
 
