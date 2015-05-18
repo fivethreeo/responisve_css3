@@ -115,6 +115,14 @@
             src: '**',
             dest: 'server/static/fonts/',
             flatten: false
+          },
+          
+          staticfiles: {
+            expand: true,
+            cwd: 'assets/static/',
+            src: '**',
+            dest: 'server/static/',
+            flatten: false
           }
         },
         buildcontrol: {
