@@ -11,9 +11,10 @@
           },
           js_frontend: {
             src: [
-              './bower_components/jquery/jquery.js',
-              './bower_components/bootstrap/dist/js/bootstrap.js',
-              './assets/javascript/frontend.js'
+              'bower_components/jquery/dist/jquery.js',
+              'bower_components/bootstrap/dist/js/bootstrap.js',
+              'bower_components/mediaCheck/js/mediaCheck.js',
+              'assets/javascript/frontend.js'
             ],
             dest: './server/static/javascript/frontend.js',
           },
