@@ -8,6 +8,7 @@
     npm install grunt-contrib-uglify --save-dev
     npm install grunt-contrib-watch --save-dev
     npm install grunt-contrib-copy --save-dev
+    npm install grunt-build-control --save-dev
     npm install less-plugin-autoprefix --save-dev
     npm install -g bower
     

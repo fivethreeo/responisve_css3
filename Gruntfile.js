@@ -16,15 +16,15 @@
               'bower_components/mediaCheck/js/mediaCheck.js',
               'assets/javascript/frontend.js'
             ],
-            dest: './server/static/javascript/frontend.js',
+            dest: 'server/static/javascript/frontend.js',
           },
           js_backend: {
             src: [
-              './bower_components/jquery/jquery.js',
-              './bower_components/bootstrap/dist/js/bootstrap.js',
-              './assets/javascript/backend.js'
+              'bower_components/jquery/jquery.js',
+              'bower_components/bootstrap/dist/js/bootstrap.js',
+              'assets/javascript/backend.js'
             ],
-            dest: './server/static/javascript/backend.js',
+            dest: 'server/static/javascript/backend.js',
           }
         },
         jade: {
@@ -34,7 +34,7 @@
               pretty: true
             },
             files: {
-              "./server/index.html": ["./assets/jade/*.jade"]
+              "server/index.html": ["assets/jade/*.jade"]
             }
           }
         },
@@ -46,9 +46,9 @@
             },
             files: {
               //compiling frontend.less into frontend.css
-              "./server/static/stylesheets/frontend.css":"./assets/less/frontend.less",
+              "server/static/stylesheets/frontend.css":"assets/less/frontend.less",
               //compiling backend.less into backend.css
-              "./server/static/stylesheets/backend.css":"./assets/less/backend.less"
+              "server/static/stylesheets/backend.css":"assets/less/backend.less"
             }
           }
         },
@@ -58,12 +58,12 @@
           },
           frontend: {
             files: {
-              './server/static/javascript/frontend.js': './server/static/javascript/frontend.js',
+              'server/static/javascript/frontend.js': 'server/static/javascript/frontend.js',
             }
           },
           backend: {
             files: {
-              './server/static/javascript/backend.js': './server/static/javascript/backend.js',
+              'server/static/javascript/backend.js': 'server/static/javascript/backend.js',
             }
           }
         },
@@ -71,9 +71,9 @@
           js_frontend: {
             files: [
               //watched files
-              './bower_components/jquery/jquery.js',
-              './bower_components/bootstrap/dist/js/bootstrap.js',
-              './assets/javascript/frontend.js'
+              'bower_components/jquery/jquery.js',
+              'bower_components/bootstrap/dist/js/bootstrap.js',
+              'assets/javascript/frontend.js'
               ],   
             tasks: ['concat:js_frontend','uglify:frontend'],     //tasks to run
             options: {
@@ -83,9 +83,9 @@
           js_backend: {
             files: [
               //watched files
-              './bower_components/jquery/jquery.js',
-              './bower_components/bootstrap/dist/js/bootstrap.js',
-              './assets/javascript/backend.js'
+              'bower_components/jquery/jquery.js',
+              'bower_components/bootstrap/dist/js/bootstrap.js',
+              'assets/javascript/backend.js'
             ],   
             tasks: ['concat:js_backend','uglify:backend'],     //tasks to run
             options: {
@@ -93,14 +93,14 @@
             }
           },
           less: {
-            files: ['./assets/less/*.less'],  //watched files
+            files: ['assets/less/*.less'],  //watched files
             tasks: ['less'],                          //tasks to run
             options: {
               livereload: true,                        //reloads the browser
             }
           },
           jade: {
-            files: ['./assets/jade/*.jade'],  //watched files
+            files: ['assets/jade/*.jade'],  //watched files
             tasks: ['jade'],                          //tasks to run
             options: {
               livereload: true,                        //reloads the browser
@@ -111,10 +111,24 @@
         copy: {
           glyphicons: {
             expand: true,
-            cwd: './bower_components/bootstrap/dist/fonts/',
+            cwd: 'bower_components/bootstrap/dist/fonts/',
             src: '**',
-            dest: './server/static/fonts/',
+            dest: 'server/static/fonts/',
             flatten: false
+          }
+        },
+        buildcontrol: {
+          options: {
+            dir: 'server',
+            commit: true,
+            push: true,
+            message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+          },
+          pages: {
+            options: {
+              remote: 'git@github.com:fivethreeo/responsive_css3.git',
+              branch: 'gh-pages'
+            }
           }
         }
       });
@@ -127,7 +141,8 @@
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-jade');
-
+  grunt.loadNpmTasks('grunt-build-control');
+  
   // Task definition
   grunt.registerTask('default', ['watch']);
 
