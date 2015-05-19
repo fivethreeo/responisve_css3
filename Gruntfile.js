@@ -25,15 +25,6 @@
               'assets/javascript/backend.js'
             ],
             dest: 'server/static/javascript/backend.js',
-          },
-          js_editor: {
-            src: [
-              'bower_components/jquery/dist/jquery.js',
-              'bower_components/bootstrap/dist/js/bootstrap.js',
-              'bower_components/mediaCheck/js/mediaCheck.js',
-              'editor_assets/javascript/editor.js'
-            ],
-            dest: 'editor/static/javascript/editor.js',
           }
         },
         jade: {
@@ -67,15 +58,6 @@
               'server/static/stylesheets/frontend.css':'assets/less/frontend.less',
               //compiling backend.less into backend.css
               'server/static/stylesheets/backend.css':'assets/less/backend.less'
-            }
-          },
-          editor: {
-            options: {
-              // compress: true,  //minifying the result
-              plugins : [ new (require('less-plugin-autoprefix'))({browsers : [ 'last 2 versions', 'ie 9' ]}) ]
-            },
-            files: {
-              'editor/static/stylesheets/editor.css':'editor_assets/less/editor.less'
             }
           }
         },
@@ -119,28 +101,9 @@
               livereload: true                        //reloads the browser
             }
           },
-          js_editor: {
-            files: [
-              //watched files
-              'bower_components/jquery/jquery.js',
-              'bower_components/bootstrap/dist/js/bootstrap.js',
-              'editor_assets/javascript/editor.js'
-            ],   
-            tasks: ['concat:js_editor'],     //tasks to run
-            options: {
-              livereload: true                        //reloads the browser
-            }
-          },
           less: {
             files: ['assets/less/*.less'],  //watched files
             tasks: ['less:development'],                          //tasks to run
-            options: {
-              livereload: true,                        //reloads the browser
-            }
-          },
-          editor_less: {
-            files: ['editor_assets/less/*.less'],  //watched files
-            tasks: ['less:editor'],                          //tasks to run
             options: {
               livereload: true,                        //reloads the browser
             }
@@ -176,21 +139,6 @@
             cwd: 'assets/static/',
             src: '**',
             dest: 'server/static/',
-            flatten: false
-          },
-          editor_glyphicons: {
-            expand: true,
-            cwd: 'bower_components/bootstrap/dist/fonts/',
-            src: '**',
-            dest: 'editor/static/fonts/',
-            flatten: false
-          },
-          
-          editor_staticfiles: {
-            expand: true,
-            cwd: 'editor_assets/static/',
-            src: '**',
-            dest: 'editor/static/',
             flatten: false
           }
         },
