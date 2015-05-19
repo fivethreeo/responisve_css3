@@ -131,6 +131,13 @@
               livereload: true,                        //reloads the browser
             }
           },
+          editor_less: {
+            files: ['editor_assets/less/*.less'],  //watched files
+            tasks: ['less'],                          //tasks to run
+            options: {
+              livereload: true,                        //reloads the browser
+            }
+          },
           jade: {
             files: ['assets/jade/*.jade'],  //watched files
             tasks: ['jade'],                          //tasks to run

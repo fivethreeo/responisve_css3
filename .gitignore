@@ -6,6 +6,8 @@ shop_env/
 bower_components/
 node_modules/
 server/
+editor/static/javascript/
+editor/static/stylesheets/
 
 #################
 ## Eclipse
