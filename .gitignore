@@ -8,6 +8,7 @@ node_modules/
 server/
 editor/static/javascript/
 editor/static/stylesheets/
+editor/static/fonts/
 
 #################
 ## Eclipse

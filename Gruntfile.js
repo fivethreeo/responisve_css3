@@ -66,8 +66,15 @@
               //compiling frontend.less into frontend.css
               'server/static/stylesheets/frontend.css':'assets/less/frontend.less',
               //compiling backend.less into backend.css
-              'server/static/stylesheets/backend.css':'assets/less/backend.less',
-              
+              'server/static/stylesheets/backend.css':'assets/less/backend.less'
+            }
+          },
+          editor: {
+            options: {
+              // compress: true,  //minifying the result
+              plugins : [ new (require('less-plugin-autoprefix'))({browsers : [ 'last 2 versions', 'ie 9' ]}) ]
+            },
+            files: {
               'editor/static/stylesheets/editor.css':'editor_assets/less/editor.less'
             }
           }
@@ -126,14 +133,14 @@
           },
           less: {
             files: ['assets/less/*.less'],  //watched files
-            tasks: ['less'],                          //tasks to run
+            tasks: ['less:development'],                          //tasks to run
             options: {
               livereload: true,                        //reloads the browser
             }
           },
           editor_less: {
             files: ['editor_assets/less/*.less'],  //watched files
-            tasks: ['less'],                          //tasks to run
+            tasks: ['less:editor'],                          //tasks to run
             options: {
               livereload: true,                        //reloads the browser
             }
